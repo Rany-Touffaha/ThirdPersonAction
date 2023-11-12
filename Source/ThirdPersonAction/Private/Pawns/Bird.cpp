@@ -6,7 +6,6 @@
 #include "Camera/CameraComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
-//#include "InputMappingContext.h"
 
 
 ABird::ABird()
@@ -46,14 +45,6 @@ void ABird::BeginPlay()
     }
 }
 
-//void ABird::MoveForward(float Value)
-//{
-//    if (Controller && (Value != 0.f))
-//    {
-//        FVector Forward = GetActorForwardVector();
-//        AddMovementInput(Forward, Value);
-//    }
-//}
 
 void ABird::Move(const FInputActionValue& Value)
 {

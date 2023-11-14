@@ -41,9 +41,9 @@ protected:
     
 private:
     
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(EditAnywhere)
     USpringArmComponent* SpringArm;
     
-    UPROPERTY(VisibleAnywhere)
+    UPROPERTY(EditAnywhere)
     UCameraComponent* ViewCamera;
 };

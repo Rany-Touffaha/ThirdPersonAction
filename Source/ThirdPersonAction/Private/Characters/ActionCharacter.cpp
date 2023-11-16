@@ -71,6 +71,12 @@ void AActionCharacter::Look(const FInputActionValue& Value)
     }
 }
 
+void AActionCharacter::Jump()
+{
+    Super::Jump();
+
+}
+
 
 void AActionCharacter::Tick(float DeltaTime)
 {
@@ -85,6 +91,7 @@ void AActionCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
     {
         EnchancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &AActionCharacter::Move);
         EnchancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AActionCharacter::Look);
+        EnchancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AActionCharacter::Jump);
     }
 }
 

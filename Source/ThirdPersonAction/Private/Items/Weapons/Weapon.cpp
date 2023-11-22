@@ -4,6 +4,12 @@
 #include "Items/Weapons/Weapon.h"
 #include "Characters/ActionCharacter.h"
 
+void AWeapon::EquipWeapon(USceneComponent* InParent, FName InSocketName)
+{
+    FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
+    ItemMesh->AttachToComponent(InParent, TransformRules, InSocketName);
+}
+
 void AWeapon::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
     Super::OnSphereOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, bFromSweep, SweepResult);
@@ -11,8 +17,7 @@ void AWeapon::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* 
     AActionCharacter* ActionCharacter = Cast<AActionCharacter>(OtherActor);
     if(ActionCharacter)
     {
-        FAttachmentTransformRules TransformRules(EAttachmentRule::SnapToTarget, true);
-        ItemMesh->AttachToComponent(ActionCharacter->GetMesh(), TransformRules, FName("RightHandSocket"));
+        
     }
 }
 

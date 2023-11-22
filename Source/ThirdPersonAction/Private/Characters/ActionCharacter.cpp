@@ -8,6 +8,9 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 
+#include "Items/Item.h"
+#include "Items/Weapons/Weapon.h"
+
 
 
 AActionCharacter::AActionCharacter()
@@ -74,6 +77,15 @@ void AActionCharacter::Look(const FInputActionValue& Value)
 void AActionCharacter::Jump()
 {
     Super::Jump();
+}
+
+void AActionCharacter::Equip()
+{
+    AWeapon* OverlappingWeapon = Cast<AWeapon>(OverlappingItem);
+    if (OverlappingWeapon)
+    {
+        OverlappingWeapon->EquipWeapon(GetMesh(), FName("hand_rSocket"));
+    }
 
 }
 
@@ -92,6 +104,7 @@ void AActionCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCom
         EnchancedInputComponent->BindAction(MovementAction, ETriggerEvent::Triggered, this, &AActionCharacter::Move);
         EnchancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &AActionCharacter::Look);
         EnchancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &AActionCharacter::Jump);
+        EnchancedInputComponent->BindAction(EquipAction, ETriggerEvent::Triggered, this, &AActionCharacter::Equip);
     }
 }
 

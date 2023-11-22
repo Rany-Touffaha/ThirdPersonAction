@@ -11,6 +11,8 @@ class UInputAction;
 class USpringArmComponent;
 class UCameraComponent;
 
+class AItem;
+
 UCLASS()
 class THIRDPERSONACTION_API AActionCharacter : public ACharacter
 {
@@ -23,6 +25,9 @@ public:
     virtual void Tick(float DeltaTime) override;
     virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
     virtual void Jump() override;
+    
+    FORCEINLINE void SetOverlappingItem(AItem* Item) { OverlappingItem = Item; }
+
 
 protected:
     
@@ -40,8 +45,12 @@ protected:
     UPROPERTY(EditAnywhere, Category = Input)
     UInputAction* JumpAction;
     
+    UPROPERTY(EditAnywhere, Category = Input)
+    UInputAction* EquipAction;
+    
     void Move(const FInputActionValue& Value);
     void Look(const FInputActionValue& Value);
+    void Equip();
     
 private:
     
@@ -50,4 +59,7 @@ private:
     
     UPROPERTY(EditAnywhere)
     UCameraComponent* ViewCamera;
+    
+    UPROPERTY(VisibleInstanceOnly)
+    AItem* OverlappingItem;
 };

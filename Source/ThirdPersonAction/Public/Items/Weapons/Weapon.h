@@ -13,6 +13,8 @@ UCLASS()
 class THIRDPERSONACTION_API AWeapon : public AItem
 {
 	GENERATED_BODY()
+public:
+    void EquipWeapon(USceneComponent* InParent, FName InSocketName);
     
 protected:
     
